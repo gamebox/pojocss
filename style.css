@@ -1,0 +1,32 @@
+.test2 {
+  display: inline-block;
+  float: right;
+  border-left: 1px solid green;
+  color: #343434;
+}
+
+.other-test {
+  display: inline-block;
+  float: right;
+  border-left: 1px solid green;
+  color: #343434;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 3px;
+  margin: 3px 5px;
+  border: none;
+  background-color: #47D934;
+}
+
+.specific-context-btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 3px;
+  margin: 3px 5px;
+  border: none;
+  background-color: #47D934;
+}
+
