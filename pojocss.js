@@ -4,178 +4,138 @@
 // Principal Author: Anthony Raymond Bullard
 // Read license.md for license information
 
-// TODO: Add module system
-// pojocss.module(name, registrationFunction, options)
-// name 				STRING 		Name for the module, only lower case letters, numbers, and -
-// registrationFunction	FUNCTION 	Function with all class declarations contained inside
-// options				OBJECT		Contains options like whether to append module name to class selectors
-// 									or include it as a descendent selector(space), or neither
-
 var _ = require('lodash');
 var fs = require('fs');
 
 module.exports = (function() {
-	var pojo = {};
 	var SELECTOR_SPLIT_REGEX = /\.|\_|\#/;
-	var SELECTOR_TOO_MANY_LEVELS = "A selector may only consist of a module and class|element|id";
-
-	function newClassMethod(internalSelector, declarationBlock) {
-		if(pojo.registry[internalSelector]) {
-			throw new Error("This selector is already defined in this module");
-		}
-		var newClass = ClassBuilder(internalSelector, declarationBlock);
-		var registryEntry = {};
-		registryEntry[internalSelector] = newClass;
-		pojo.registry = _.assign(pojo.registry, registryEntry);
-		return newClass;
-	}
-
-	function getDeclarationBlockMethod(moduleName, selectorName) {
-		moduleName = moduleName || pojo.activeModule;
-		return pojo.registry[selectorName].declarationBlock;
-	}
-
-	function buildClass(className, classBuilder) {
-		if(classBuilder.abstract) {
-			return '';
-		}
-		var classString = '';
-		classString = classString + '.' + className + ' {\n';
-		_.forOwn(classBuilder.declarationBlock, function(value, key) {
-			classString = classString + '  ' + key + ': ' + value + ';\n';
-		});
-		classString = classString + '}\n\n';
-		return classString;
-	}
-
-	function buildMethod(filename, dir) {
-		var fileString = '';
-		var path = (dir || './') + (filename || 'style') + '.css'
-		_.forOwn(pojo.registry, function(value, key) {
-			fileString = fileString + buildClass(key, value);
-		});
-		fs.appendFileSync(path, fileString);
-		console.log('Created a file at: ' + path);
-	}
-	pojo.registry = {};
-	pojo.newClass = newClassMethod;
-	pojo.getDeclarationBlock = getDeclarationBlockMethod;
-	pojo.build = buildMethod;
-	pojo.activeModule = 'default';
-	function ClassBuilder(internalSelector, declarationBlock) {
-		function extendsMethod(selectorToBeExtended) {
-			if(this.sealed) {
-				return this;
-			}
-			if(this.log.length > 0) {
-				throw new Error('Can\'t extend once extended.');
-			}
-			var moduleName, selectorName, module;
-			if(SELECTOR_SPLIT_REGEX.test(selectorToBeExtended)) {
-				var parts = selectorToBeExtended.split(SELECTOR_SPLIT_REGEX);
-				if(parts.length > 2) {
-					throw new Error(SELECTOR_TOO_MANY_LEVELS)
-				}
-				moduleName = parts[0];
-				selectorName = parts[1];
-			} else {
-				moduleName = this.moduleName;
-				selectorName = selectorToBeExtended;
-			}
-
-			var declarationBlock = this.declarationBlock = pojo.getDeclarationBlock(moduleName, selectorName);
-			this.log.push({
-				action: 'extending',
-				selectorUsed: selectorToBeExtended,
-				declarationBlockAdded: _.assign({}, declarationBlock)
-			});
-
-			return this;
-		}
-
-		function newDeclarationsMethod(declarationBlock) {
-			if(this.sealed) {
-				return this;
-			}
-			var that = this;
-			_.forOwn(declarationBlock, function(value, key) {
-				if(_.has(that.declarationBlock, key)) {
-					throw new Error('This declaration has already defined this property');
-				}
-			});
-			_.merge(this.declarationBlock, declarationBlock);
-			return this;
-		}
-
-		function overridesMethod(declarationBlock) {
-			if(this.sealed) {
-				return this;
-			}
-			_.merge(this.declarationBlock, declarationBlock);
-			return this;
-		}
-
-		function overrideDeclarationMethod(propertyName, value) {
-			if(this.sealed) {
-				return this;
-			}
-			var overrideDeclaration = {};
-			overrideDeclaration[propertyName] = value;
-			_.merge(this.declarationBlock, overrideDeclaration);
-			return this;
-		}
-
-		function withDeclarationMethod(propertyName, value) {
-			if(this.sealed) {
-				return this;
-			}
-			if(_.has(this.declarationBlock, propertyName)) {
-				throw new Error('The property \'' + propertyName + '\' has already been set!');
-			}
-			var newDeclaration = {};
-			newDeclaration[propertyName] = value;
-			_.merge(this.declarationBlock, newDeclaration);
-			return this;
-		}
-
-		function setDescriptionMethod(description) {
-			if(this.sealed) {
-				return this;
-			}
-			this.description = description;
-			return this;
-		}
-
-		function sealMethod() {
-			this.sealed = true;
-			pojo.registry[this.internalSelector] = this;
-			return this;
-		}
-
-		function isAbstractMethod(value) {
-			if(this.sealed) {
-				throw new Error("Can not modify a sealed class!");
-			}
-			this.abstract = value || true;
-			return this;
-		}
+	var SELECTOR_TOO_MANY_LEVELS = 
+	    "A selector may only consist of a module and class name(psuedo-selectors coming soon).";
+	
+	function breakdownInternalSelector(selectorIn, moduleName) {
+		var parts = selectorIn.split(' < ');
+		var d = parts.length > 1 ? parts[1] : null;
+		var a = parts[0][0] === '*';
+		var s = a ? parts[0].slice(1) : parts[0];
+		d = d && d.split('.').length === 1 ? moduleName + '.' + d : d;
+		s = moduleName + '.' + s;
 		return {
-			internalSelector: internalSelector,
-			module: pojo.activeModule,
-			extending: extendsMethod,
-			withNewDeclarations: newDeclarationsMethod,
-			withOverrides: overridesMethod,
-			overrideDeclaration: overrideDeclarationMethod,
-			withDeclaration: withDeclarationMethod,
-			setDescription: setDescriptionMethod,
-			isAbstract: isAbstractMethod,
-			seal: sealMethod,
-			declarationBlock: declarationBlock || {},
-			log: [],
-			sealed: false,
-			abstract: false,
-			description: ''
+			a: a, // isAbstract?
+			s: s, // Qualified Selector
+			d: d  // Qualified Dependency Selector
+		};
+	}
+
+	function newClassBuilder(internalSelector, declarationBlock, moduleName, options) {
+		var ruleset = breakdownInternalSelector(internalSelector, moduleName);
+		ruleset.r = declarationBlock; // Raw Declaration Block
+		ruleset.m = options;
+		return ruleset;
+	}
+
+	function moduleMethod(name, rulesets, options) {
+		if(!name) {
+			throw new Error("Every module must have a name defined.");
+		}
+
+		function build() {
+			console.log('* Building Module "' + name + '"');
+			return _.map(rulesets, function(ruleset, key) {
+				return newClassBuilder(key, ruleset, name, options);
+			});
+		}
+
+		return {
+			build: build,
+			name: name
 		}
 	}
-	return pojo;
+
+
+	function fileMethod(path, modules) {
+		var registry = _.flatten(modules);
+
+		function build() {
+			function cleanDeclarations(declarations) {
+				return _.mapKeys(declarations, function(value, key) {
+					var newKey = (key[0] === '!') ? key.slice(1) : key;
+					return newKey;
+				});
+			}
+			function applyToDependency(newDeclarations, oldDeclarations) {
+				var newDeclarationPairs = _.pairs(newDeclarations);
+				var partition = _.groupBy(newDeclarationPairs, function(value) {
+					return value[0][0] === '!' ? 'override' : 'add';
+				});
+				var overrides = _.zipObject(partition.override);
+				var adding = _.zipObject(partition.add);
+				overrides = cleanDeclarations(overrides);
+				var base = _.merge(_.clone(oldDeclarations, true), overrides);
+				_.forOwn(adding, function(d, key) {
+					if(_.has(base, key)) {
+						throw new Error('Can\'t implicitly override key "' + key + '"" from ' + JSON.stringify(base));
+					}
+				});
+				return _.merge(base, adding);
+			}
+
+			function buildOutputForRuleset(ruleset) {
+				if(ruleset.o && ruleset.o.isArray()) {
+					return;
+				}
+				if(ruleset.d) {
+					var dependency = _.find(registry, { 's': ruleset.d}).o;
+					ruleset.o = applyToDependency(ruleset.r,
+						                          dependency || buildOutputForRuleset(dependency));
+				} else {
+					ruleset.o = cleanDeclarations(ruleset.r);
+				}
+			}
+
+			function buildClassString(class_) {
+				if(class_.a) {
+					return '';
+				}
+				var selectorParts = class_.s.split('.');
+				var className = selectorParts[1];
+				var module = selectorParts[0];
+				// TODO(@gamebox): Allow for reversed order and refactor out as fn
+				if (!class_.m || class_.m.h) {
+					var classString = '.' + module + '-' + className + ' {\n';
+				} else if (!class_.m || class_.m.dh) {
+					var classString = '.' + module + '--' + className + ' {\n';
+				} else if (class_.m && class_.m.u) {
+					var classString = '.' + module + '_' + className + ' {\n';
+				} else if (class_.m && class_.m.du) {
+					var classString = '.' + module + '__' + className + ' {\n';
+				} else if (class_.m && class_.m.no) {
+					var classString = '.' + className + ' {\n';
+				}
+				_.forOwn(class_.o, function(value, key) {
+					classString = classString + '  ' + key + ': ' + value + ';\n';
+				});
+				classString = classString + '}\n\n';
+				return classString;
+			}
+
+			console.log('[' + (new Date()) + '] Building file with ' + registry.length + ' rulesets...');
+			var fileString = '';
+			_.forOwn(registry, (ruleset) => buildOutputForRuleset(ruleset))
+			_.forOwn(registry, function(value) {
+				fileString = fileString + buildClassString(value);
+			});
+			fs.writeFileSync(path, fileString, { flags: 'w'});
+			console.log('[' + (new Date()) + '] Created a file at: ' + path);
+		}
+
+		return {
+			build: build
+		}
+	}
+
+
+	return {
+		module: moduleMethod,
+		file: fileMethod
+	};
 })();
