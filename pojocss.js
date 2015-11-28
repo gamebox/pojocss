@@ -26,22 +26,26 @@ module.exports = (function() {
 		};
 	}
 
-	function newClassBuilder(internalSelector, declarationBlock, moduleName, options) {
+	function newClassBuilder(internalSelector, declarationBlock, moduleName, mode) {
 		var ruleset = breakdownInternalSelector(internalSelector, moduleName);
 		ruleset.r = declarationBlock; // Raw Declaration Block
-		ruleset.m = options;
+		ruleset.m = mode;
 		return ruleset;
 	}
 
-	function moduleMethod(name, rulesets, options) {
+	function moduleMethod(name, rulesets, mode) {
 		if(!name) {
 			throw new Error("Every module must have a name defined.");
+		}
+
+		if(mode && !_.isString(mode)) {
+			throw new Error("Display mode for a module must be a string and one of the following values: 'u', 'h', 'du', 'dh', `no`, `id`")
 		}
 
 		function build() {
 			console.log('* Building Module "' + name + '"');
 			return _.map(rulesets, function(ruleset, key) {
-				return newClassBuilder(key, ruleset, name, options);
+				return newClassBuilder(key, ruleset, name, mode);
 			});
 		}
 
@@ -92,6 +96,25 @@ module.exports = (function() {
 				}
 			}
 
+			function buildClassSelector(className, module, mode) {
+				switch(mode) {
+					case 'h':
+						return '.' + module + '-' + className;
+					case 'dh':
+						return '.' + module + '--' + className;
+					case 'u':
+						return '.' + module + '_' + className;
+					case 'du':
+						return '.' + module + '__' + className;
+					case 'no':
+						return '.' + className;
+					case 'id':
+						return '.' + module + ' .' + className;
+					default:
+						return '.' + module + "--" + className;
+				}
+			}
+
 			function buildClassString(class_) {
 				if(class_.a) {
 					return '';
@@ -100,17 +123,7 @@ module.exports = (function() {
 				var className = selectorParts[1];
 				var module = selectorParts[0];
 				// TODO(@gamebox): Allow for reversed order and refactor out as fn
-				if (!class_.m || class_.m.h) {
-					var classString = '.' + module + '-' + className + ' {\n';
-				} else if (!class_.m || class_.m.dh) {
-					var classString = '.' + module + '--' + className + ' {\n';
-				} else if (class_.m && class_.m.u) {
-					var classString = '.' + module + '_' + className + ' {\n';
-				} else if (class_.m && class_.m.du) {
-					var classString = '.' + module + '__' + className + ' {\n';
-				} else if (class_.m && class_.m.no) {
-					var classString = '.' + className + ' {\n';
-				}
+				var classString = buildClassSelector(className, module, class_.m) + ' {\n';
 				_.forOwn(class_.o, function(value, key) {
 					classString = classString + '  ' + key + ': ' + value + ';\n';
 				});

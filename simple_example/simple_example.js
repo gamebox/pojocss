@@ -28,6 +28,6 @@ var defaultMod = pojocss.module('default', {
 	'specific-context-btn < btn-primary': {
 	    '!margin': '3px 5px'
 	}
-}, { 'du': true }).build();
+}, 'du').build();
 
 pojocss.file('out/style1.css', [defaultMod]).build();
