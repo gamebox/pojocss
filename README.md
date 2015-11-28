@@ -107,7 +107,7 @@ pojocss.module('secondModule', {
 
 ##It's just Javascript
 
-Probably the best part about *POJOCSS* is that it is _just Javascript_, not some CSS variant trying to hack on calculation and variables and such.  This is what Javascript does for a living.  Create variables, generators, factory functions, value calculators, whatever you'd like.  Or use it like it's just a preprocessor.  Or use it like PostCSS, scanning properties and values for things to transform, combine, or divide.  Auto-prefix with ease.
+Probably the best part about **POJOCSS** is that it is _just Javascript_, not some CSS variant trying to hack on calculation and variables and such.  This is what Javascript does for a living.  Create variables, generators, factory functions, value calculators, whatever you'd like.  Or use it like it's just a preprocessor.  Or use it like PostCSS, scanning properties and values for things to transform, combine, or divide.  Auto-prefix with ease.
 
 Right now, there aren't any "hooks" into the compilation system.  But there might not need to be.  There are two great places for you to put your hacking skills to work.
 

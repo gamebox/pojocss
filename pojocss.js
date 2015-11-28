@@ -146,7 +146,6 @@ module.exports = (function() {
 		}
 	}
 
-
 	return {
 		module: moduleMethod,
 		file: fileMethod
