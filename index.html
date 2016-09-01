@@ -1,152 +1,73 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Pojocss by gamebox</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Pojocss</h1>
-      <h2 class="project-tagline">Exploring the power Plain ol&#39; Javascript Objects could bring to building stylesheets.</h2>
-      <a href="https://github.com/gamebox/pojocss" class="btn">View on GitHub</a>
-      <a href="https://github.com/gamebox/pojocss/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/gamebox/pojocss/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
-
-    <section class="main-content">
-      <h1>
-<a id="pojocssjs" class="anchor" href="#pojocssjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>POJOCSS.js</h1>
-
-<p>Don't be confused.  This is a Javascript library for building CSS files.  Yes, I know:  "What?"</p>
-
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=Edge"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>PojoCSS</title><style>*{box-sizing:border-box}.cxs-824570648 h2 h1{}.cxs-2262331773{font-size:20px}.cxs-424651569{font-size:20px}.cxs-2153002053 a:hover{text-decoration:underline}.cxs-799160745{font-size:48px}.cxs-2153002053 a{color:#05a}.cxs-3954183383{font-size:24px}.cxs-2153002053 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-1601956544{}.cxs-1601956544 h1{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:48px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 h2{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:24px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 h3{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 h4{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:16px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 h5{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:14px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 h6{font-weight:500;text-transform:uppercase;letter-spacing:0.2em;font-size:12px;margin-top:32px;margin-bottom:8px}.cxs-1601956544 p{overflow-x:scroll;margin-top:0px;margin-bottom:16px}.cxs-1601956544 code{font-family:Menlo, monospace;font-size:14px;padding:4px;background-color:#f6f6f6;border-radius:2px}.cxs-1601956544 pre{font-family:Menlo, monospace;font-size:14px;overflow-x:scroll;padding:16px;margin-top:8px;margin-bottom:32px;background-color:#f6f6f6;border-radius:2px}.cxs-1601956544 pre .hljs-keyword{color:#666}.cxs-1601956544 pre .hljs-built_in{color:#888}.cxs-1601956544 pre .hljs-type{color:#888}.cxs-1601956544 pre .hljs-literal{color:#666}.cxs-1601956544 pre .hljs-number{color:#1f80ff}.cxs-1601956544 pre .hljs-regexp{color:#666}.cxs-1601956544 pre .hljs-string{color:#888}.cxs-1601956544 pre .hljs-subst{color:#888}.cxs-1601956544 pre .hljs-symbol{color:#666}.cxs-1601956544 pre .hljs-class{color:#666}.cxs-1601956544 pre .hljs-function{color:#1f80ff}.cxs-1601956544 pre .hljs-title{color:#666}.cxs-1601956544 pre .hljs-params{color:#888}.cxs-1601956544 pre .hljs-comment{color:#888}.cxs-1601956544 pre .hljs-doctag{color:#888}.cxs-1601956544 pre .hljs-meta{color:#888}.cxs-1601956544 pre .hljs-meta-keyword{color:#666}.cxs-1601956544 pre .hljs-meta-string{color:#666}.cxs-1601956544 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom-style:solid;border-bottom-width:1px;border-bottom:2px solid #eee}.cxs-1601956544 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-1601956544 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-1601956544 td{vertical-align:top;line-height:inherit}.cxs-1601956544 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-1601956544 a{color:#666;text-decoration: none}.cxs-1601956544 a:hover{text-decoration:underline}.cxs-1601956544 ul{padding-left:32px;margin-top:0px;margin-bottom:16px}.cxs-2656088506{font-size:20px;line-height:1.625}.cxs-2656088506 h1{font-weight:600;letter-spacing:0.1em;font-size:48px;margin-top:48px;margin-bottom:8px}.cxs-2656088506 h2{font-weight:600;letter-spacing:0.1em;font-size:24px;margin-top:48px;margin-bottom:8px}.cxs-2656088506 h3{font-weight:600;letter-spacing:0.1em;font-size:20px;margin-top:48px;margin-bottom:8px}.cxs-2656088506 h4{font-weight:600;letter-spacing:0.1em;font-size:16px;margin-top:32px;margin-bottom:8px}.cxs-2656088506 h5{font-weight:600;letter-spacing:0.1em;font-size:14px;margin-top:32px;margin-bottom:8px}.cxs-2656088506 h6{font-weight:600;letter-spacing:0.1em;font-size:12px;margin-top:32px;margin-bottom:8px}.cxs-2656088506 p{overflow-x:scroll;font-size:20px;margin-top:0px;margin-bottom:16px}.cxs-2656088506 code{font-family:Menlo, monospace;font-size:14px;color:#ab61ff}.cxs-2656088506 pre{font-family:Menlo, monospace;font-size:14px;overflow-x:scroll;padding-left:16px;margin-top:8px;margin-bottom:32px;border-left:2px solid #ccd}.cxs-2656088506 pre .hljs-keyword{color:#0099e0}.cxs-2656088506 pre .hljs-built_in{color:#ab61ff}.cxs-2656088506 pre .hljs-type{color:#ab61ff}.cxs-2656088506 pre .hljs-literal{color:#0099e0}.cxs-2656088506 pre .hljs-number{color:#f7b}.cxs-2656088506 pre .hljs-regexp{color:#0099e0}.cxs-2656088506 pre .hljs-string{color:#ab61ff}.cxs-2656088506 pre .hljs-subst{color:#ab61ff}.cxs-2656088506 pre .hljs-symbol{color:#0099e0}.cxs-2656088506 pre .hljs-class{color:#0099e0}.cxs-2656088506 pre .hljs-function{color:#f7b}.cxs-2656088506 pre .hljs-title{color:#0099e0}.cxs-2656088506 pre .hljs-params{color:#ab61ff}.cxs-2656088506 pre .hljs-comment{color:#ab61ff}.cxs-2656088506 pre .hljs-doctag{color:#ab61ff}.cxs-2656088506 pre .hljs-meta{color:#ab61ff}.cxs-2656088506 pre .hljs-meta-keyword{color:#0099e0}.cxs-2656088506 pre .hljs-meta-string{color:#0099e0}.cxs-2656088506 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom:2px solid #ccd}.cxs-2656088506 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-2656088506 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-2656088506 td{vertical-align:top;line-height:inherit}.cxs-2656088506 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-2656088506 a{color:inherit}.cxs-2656088506 a:hover{color:#0099e0}.cxs-2656088506 ul{padding-left:32px;margin-top:0px;margin-bottom:16px}.cxs-2570704871{font-size:14px}.cxs-2570704871 h1{font-size:inherit;margin-top:32px}.cxs-2570704871 h1:before{content:"# ";color:#888}.cxs-2570704871 h2{font-size:inherit;margin-top:32px}.cxs-2570704871 h2:before{content:"## ";color:#888}.cxs-2570704871 h3{font-size:inherit}.cxs-2570704871 h3:before{content:"### ";color:#888}.cxs-2570704871 h4{font-size:16px}.cxs-2570704871 h5{font-size:14px}.cxs-2570704871 h6{font-size:12px}.cxs-2570704871 p{overflow-x:scroll}.cxs-2570704871 code{font-family:inherit;font-size:inherit;overflow-x:scroll;color:#666}.cxs-2570704871 code:before{content:"`"}.cxs-2570704871 code:after{content:"`"}.cxs-2570704871 pre{font-family:inherit;font-size:inherit;overflow-x:scroll;color:#666}.cxs-2570704871 pre:before{content:"```";display:block}.cxs-2570704871 pre:after{content:"```";display:block}.cxs-2570704871 pre .hljs-keyword{color:#666}.cxs-2570704871 pre .hljs-built_in{color:#888}.cxs-2570704871 pre .hljs-type{color:#888}.cxs-2570704871 pre .hljs-literal{color:#666}.cxs-2570704871 pre .hljs-number{color:#1f80ff}.cxs-2570704871 pre .hljs-regexp{color:#666}.cxs-2570704871 pre .hljs-string{color:#888}.cxs-2570704871 pre .hljs-subst{color:#888}.cxs-2570704871 pre .hljs-symbol{color:#666}.cxs-2570704871 pre .hljs-class{color:#666}.cxs-2570704871 pre .hljs-function{color:#1f80ff}.cxs-2570704871 pre .hljs-title{color:#666}.cxs-2570704871 pre .hljs-params{color:#888}.cxs-2570704871 pre .hljs-comment{color:#888}.cxs-2570704871 pre .hljs-doctag{color:#888}.cxs-2570704871 pre .hljs-meta{color:#888}.cxs-2570704871 pre .hljs-meta-keyword{color:#666}.cxs-2570704871 pre .hljs-meta-string{color:#666}.cxs-2570704871 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom-style:solid;border-bottom-width:1px}.cxs-2570704871 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-2570704871 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-2570704871 td{vertical-align:top;line-height:inherit}.cxs-2570704871 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-2570704871 a{color:inherit}.cxs-2570704871 ul{list-style-type:none;padding-left:0px}.cxs-2570704871 li{}.cxs-2570704871 li:before{content:"- "}.cxs-2570704871 b{}.cxs-2570704871 b:before{content:"*"}.cxs-2570704871 b:after{content:"*"}.cxs-2570704871 pre code{}.cxs-2570704871 pre code:before{content:none}.cxs-2570704871 pre code:after{content:none}.cxs-824570648{}.cxs-824570648 h1{font-weight:600;line-height:1.25;font-size:48px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h1 h0{}.cxs-824570648 h1 h1{}.cxs-824570648 h1 h2{}.cxs-824570648 h1 h3{}.cxs-824570648 h1 h4{}.cxs-824570648 h1 h5{}.cxs-824570648 h1 h6{}.cxs-824570648 h2{font-weight:600;line-height:1.25;font-size:24px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h2 h0{}.cxs-2153002053 td{vertical-align:top;line-height:inherit}.cxs-824570648 h2 h2{}.cxs-824570648 h2 h3{}.cxs-824570648 h2 h4{}.cxs-824570648 h2 h5{}.cxs-824570648 h2 h6{}.cxs-824570648 h3{font-weight:600;line-height:1.25;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h3 h0{}.cxs-824570648 h3 h1{}.cxs-824570648 h3 h2{}.cxs-824570648 h3 h3{}.cxs-824570648 h3 h4{}.cxs-824570648 h3 h5{}.cxs-824570648 h3 h6{}.cxs-824570648 h4{font-weight:600;line-height:1.25;font-size:16px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h4 h0{}.cxs-824570648 h4 h1{}.cxs-824570648 h4 h2{}.cxs-824570648 h4 h3{}.cxs-824570648 h4 h4{}.cxs-824570648 h4 h5{}.cxs-824570648 h4 h6{}.cxs-824570648 h5{font-weight:600;line-height:1.25;font-size:14px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h5 h0{}.cxs-824570648 h5 h1{}.cxs-824570648 h5 h2{}.cxs-824570648 h5 h3{}.cxs-824570648 h5 h4{}.cxs-824570648 h5 h5{}.cxs-824570648 h5 h6{}.cxs-824570648 h6{font-weight:600;line-height:1.25;font-size:12px;margin-top:32px;margin-bottom:8px}.cxs-824570648 h6 h0{}.cxs-824570648 h6 h1{}.cxs-824570648 h6 h2{}.cxs-824570648 h6 h3{}.cxs-824570648 h6 h4{}.cxs-824570648 h6 h5{}.cxs-824570648 h6 h6{}.cxs-824570648 p{overflow-x:scroll;margin-top:0px;margin-bottom:16px}.cxs-824570648 code{font-family:Menlo, monospace;font-size:14px;padding:4px;background-color:#eee;border-radius:2px}.cxs-824570648 pre{font-family:Menlo, monospace;font-size:14px;overflow-x:scroll;padding:16px;margin-top:8px;margin-bottom:32px;background-color:#eee;border-radius:2px}.cxs-824570648 pre .hljs-keyword{color:#08e}.cxs-824570648 pre .hljs-built_in{color:#059}.cxs-824570648 pre .hljs-type{color:#059}.cxs-824570648 pre .hljs-literal{color:#08e}.cxs-824570648 pre .hljs-number{color:#e08}.cxs-824570648 pre .hljs-regexp{color:#08e}.cxs-824570648 pre .hljs-string{color:#059}.cxs-824570648 pre .hljs-subst{color:#059}.cxs-824570648 pre .hljs-symbol{color:#08e}.cxs-824570648 pre .hljs-class{color:#08e}.cxs-824570648 pre .hljs-function{color:#e08}.cxs-824570648 pre .hljs-title{color:#08e}.cxs-824570648 pre .hljs-params{color:#059}.cxs-824570648 pre .hljs-comment{color:#059}.cxs-824570648 pre .hljs-doctag{color:#059}.cxs-824570648 pre .hljs-meta{color:#059}.cxs-824570648 pre .hljs-meta-keyword{color:#08e}.cxs-824570648 pre .hljs-meta-string{color:#08e}.cxs-824570648 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom-style:solid;border-bottom-width:1px;border-bottom:2px solid #ddd}.cxs-824570648 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-824570648 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-824570648 td{vertical-align:top;line-height:inherit}.cxs-824570648 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-824570648 a{color:#08e;text-decoration: none}.cxs-824570648 a:hover{text-decoration:underline}.cxs-824570648 ul{padding-left:32px;margin-top:0px;margin-bottom:16px}.cxs-2297006982{}.cxs-2297006982 h1{font-weight:500;letter-spacing:-0.01em;font-size:48px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 h2{font-weight:500;letter-spacing:-0.01em;font-size:24px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 h3{font-weight:500;letter-spacing:-0.01em;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 h4{font-weight:500;letter-spacing:-0.01em;font-size:16px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 h5{font-weight:500;letter-spacing:-0.01em;font-size:14px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 h6{font-weight:500;letter-spacing:-0.01em;font-size:12px;margin-top:32px;margin-bottom:8px}.cxs-2297006982 p{overflow-x:scroll;margin-top:0px;margin-bottom:16px}.cxs-2297006982 code{font-family:Menlo, monospace;font-size:14px;padding:4px;background-color:#f5f5f5;border-radius:2px}.cxs-2297006982 pre{font-family:Menlo, monospace;font-size:14px;overflow-x:scroll;padding:16px;margin-top:8px;margin-bottom:32px;background-color:#f5f5f5;border-radius:2px}.cxs-2297006982 pre .hljs-keyword{color:#2196f3}.cxs-2297006982 pre .hljs-built_in{color:#1565c0}.cxs-2297006982 pre .hljs-type{color:#1565c0}.cxs-2297006982 pre .hljs-literal{color:#2196f3}.cxs-2297006982 pre .hljs-number{color:#ff4081}.cxs-2297006982 pre .hljs-regexp{color:#2196f3}.cxs-2297006982 pre .hljs-string{color:#1565c0}.cxs-2297006982 pre .hljs-subst{color:#1565c0}.cxs-2297006982 pre .hljs-symbol{color:#2196f3}.cxs-2297006982 pre .hljs-class{color:#2196f3}.cxs-2297006982 pre .hljs-function{color:#ff4081}.cxs-2297006982 pre .hljs-title{color:#2196f3}.cxs-2297006982 pre .hljs-params{color:#1565c0}.cxs-2297006982 pre .hljs-comment{color:#1565c0}.cxs-2297006982 pre .hljs-doctag{color:#1565c0}.cxs-2297006982 pre .hljs-meta{color:#1565c0}.cxs-2297006982 pre .hljs-meta-keyword{color:#2196f3}.cxs-2297006982 pre .hljs-meta-string{color:#2196f3}.cxs-2297006982 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom-style:solid;border-bottom-width:1px;border-bottom:2px solid #e0e0e0}.cxs-2297006982 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-2297006982 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-2297006982 td{vertical-align:top;line-height:inherit}.cxs-2297006982 img{max-width: 100%;height: auto;margin-top:16px;margin-bottom:16px}.cxs-2297006982 a{color:#2196f3;text-decoration: none}.cxs-2297006982 a:hover{text-decoration:underline}.cxs-2297006982 ul{padding-left:32px;margin-top:0px;margin-bottom:16px}.cxs-2153002053{}.cxs-2153002053 h1{font-weight:700;letter-spacing:-0.01em;font-size:24px;margin-top:48px;margin-bottom:48px;border-bottom-width:4px;border-bottom-style:solid}.cxs-2153002053 th{text-align:left;line-height:inherit;vertical-align:bottom}.cxs-2153002053 h2{font-weight:700;letter-spacing:-0.01em;font-size:24px;margin-top:48px;margin-bottom:48px;border-bottom-width:4px;border-bottom-style:solid}.cxs-2153002053 table{border-collapse:separate;border-spacing:0px;max-width:100%;width:100%}.cxs-2153002053 h3{font-weight:700;letter-spacing:-0.01em;font-size:20px;margin-top:48px;margin-bottom:48px;border-bottom-width:2px;border-bottom-style:solid}.cxs-2153002053 hr{margin-top:48px;margin-bottom:48px;border:0px;border-bottom:2px solid}.cxs-2153002053 h4{font-weight:700;letter-spacing:-0.01em;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-2153002053 h5{font-weight:700;letter-spacing:-0.01em;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-2153002053 h6{font-weight:700;letter-spacing:-0.01em;font-size:20px;margin-top:32px;margin-bottom:8px}.cxs-2153002053 p{overflow-x:scroll;max-width:40em;margin-top:0px;margin-bottom:16px}.cxs-2153002053 code{font-family:Menlo, monospace;font-size:14px;color:#05a}.cxs-2153002053 pre{font-family:Menlo, monospace;font-size:14px;overflow-x:scroll;padding-top:16px;padding-bottom:16px;margin-top:32px;margin-bottom:32px;border-top:1px solid;border-bottom:1px solid}.cxs-2153002053 pre .hljs-keyword{color:#05a}.cxs-2153002053 pre .hljs-built_in{color:#444}.cxs-2153002053 pre .hljs-type{color:#444}.cxs-2153002053 pre .hljs-literal{color:#05a}.cxs-2153002053 pre .hljs-number{color:#f30}.cxs-2153002053 pre .hljs-regexp{color:#05a}.cxs-2153002053 pre .hljs-string{color:#444}.cxs-2153002053 pre .hljs-subst{color:#444}.cxs-2153002053 pre .hljs-symbol{color:#05a}.cxs-2153002053 pre .hljs-class{color:#05a}.cxs-2153002053 pre .hljs-function{color:#f30}.cxs-2153002053 pre .hljs-title{color:#05a}.cxs-2153002053 pre .hljs-params{color:#444}.cxs-2153002053 pre .hljs-comment{color:#444}.cxs-2153002053 pre .hljs-doctag{color:#444}.cxs-2153002053 pre .hljs-meta{color:#444}.cxs-2153002053 pre .hljs-meta-keyword{color:#05a}.cxs-2153002053 pre .hljs-meta-string{color:#05a}.cxs-2153002053 ul{list-style:square inside;padding-left:0px;margin-top:0px;margin-bottom:32px}@media screen and (min-width:52em) { .cxs-2153002053 h3{font-size:24px} }@media screen and (min-width:52em) { .cxs-2153002053 h2{font-size:48px} }@media screen and (min-width:52em) { .cxs-2153002053 h1{font-size:48px} }@media screen and (min-width: 52em) { .cxs-2262331773{font-size:32px} }@media screen and (min-width: 52em) { .cxs-3954183383{} }@media screen and (min-width: 52em) { .cxs-799160745{font-size:72px} }@media screen and (min-width: 52em) { .cxs-424651569{} }</style></head><body style="margin:0;"><div class="Xv" style="font-family:&quot;Avenir Next&quot;, Helvetica, sans-serif;font-weight:400;line-height:1.5;color:#333;background-color:#fff;"><nav style="display:flex;align-items:center;padding-top:8px;padding-bottom:8px;padding-left:16px;padding-right:16px;background-color:#fff;"><a href="https://gamebox.github.io/pojocss" class="Link" style="box-sizing:border-box;color:inherit;text-transform:uppercase;font-weight:600;letter-spacing:0.2em;opacity:0.75;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;text-decoration:none;">Home</a><a href="https://github.com/gamebox/pojocss" class="Link" style="box-sizing:border-box;color:inherit;text-transform:uppercase;font-weight:600;letter-spacing:0.2em;opacity:0.75;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;text-decoration:none;">GitHub</a></nav><header class="BannerHeader" style="display:flex;align-items:center;justify-content:center;text-align:center;min-height:80vh;color:white;background-color:#333;background-image:url(undefined);background-size:cover;background-position:center;"><div style="box-sizing:border-box;width:100%;max-width:1024px;margin-left:auto;margin-right:auto;padding-top:48px;padding-bottom:48px;padding-left:32px;padding-right:32px;"><h1 class="cxs-799160745" style="box-sizing:border-box;font-weight:500;text-transform:uppercase;letter-spacing:0.2em;margin:0;">pojocss</h1><h2 class="cxs-3954183383" style="box-sizing:border-box;font-weight:500;text-transform:uppercase;letter-spacing:0.2em;margin:0;">Exploring the power Plain ol&#x27; Javascript Objects could bring to building stylesheets.</h2><div style="box-sizing:border-box;margin-left:-8px;margin-right:-8px;padding-top:16px;padding-bottom:16px;"><iframe src="https://platform.twitter.com/widgets/tweet_button.html?text=pojocss%3A%20Exploring%20the%20power%20Plain%20ol&#x27;%20Javascript%20Objects%20could%20bring%20to%20building%20stylesheets.&amp;url=https%3A%2F%2Fgamebox.github.io%2Fpojocss&amp;via=&amp;hashtags=&amp;size=" height="20" allowtransparency="true" frameborder="0" scrolling="no" style="box-sizing:border-box;width:61px;overflow:hidden;margin:8px;"></iframe><iframe src="https://ghbtns.com/github-btn.html?type=star&amp;count=true&amp;user=gamebox&amp;repo=pojocss&amp;size=" height="20" frameborder="0" scrolling="no" style="box-sizing:border-box;width:100px;overflow:hidden;margin:8px;"></iframe><div style="display:table;clear:both;"></div></div></div></header><div class="cxs-1601956544" style="box-sizing:border-box;max-width:1024px;margin-left:auto;margin-right:auto;padding-top:32px;padding-bottom:32px;padding-left:32px;padding-right:32px;"><article style="box-sizing:border-box;"><div><p>#POJOCSS.js</p>
+<p>Don't be confused.  This is a Javascript library for building CSS files.  Yes, I know:  &quot;What?&quot;</p>
 <p>This is about exploring what expressing CSS rulesets as Plain ol' Javascript Objects could bring to the experience of building stylesheets for your webapps.</p>
-
 <p>Let's see what I've found so far</p>
-
-<h2>
-<a id="module-system" class="anchor" href="#module-system" aria-hidden="true"><span class="octicon octicon-link"></span></a>Module System</h2>
-
+<p>##Module System</p>
 <p>We are smart authors of CSS, we like to namespace our classes and not fight the specificity battle.  So, we develop our styles in modules.  One powerful thing that I've found here?  We can compose a lot of different ways to compose our rule selectors.  For instance:</p>
-
-<pre><code>``` css
-.module-class  { ... }
-.module--class { ... }
-.module_class  { ... }
-.module__class { ... }
-.module .class { ... }
-```
-</code></pre>
-
-<p>No need for the system to get all opinionated, though it does start with one big opinion that may be a deal breaker for some.  <em>All</em> selectors are classes. So the module name will either add it self to the front(or rear maybe) of the class names you choose as selectors.  One flag changes everything.  This makes the module system lightweight.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">pojocss</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>moduleName<span class="pl-pds">'</span></span>, {
-    <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span>;
+<pre>``` css
+<span class="hljs-selector-class">.module-class</span>  { ... }
+<span class="hljs-selector-class">.module--class</span> { ... }
+<span class="hljs-selector-class">.module_class</span>  { ... }
+<span class="hljs-selector-class">.module__class</span> { ... }
+<span class="hljs-selector-class">.module</span> <span class="hljs-selector-class">.class</span> { ... }
+```</pre><p>No need for the system to get all opinionated, though it does start with one big opinion that may be a deal breaker for some.  <em>All</em> selectors are classes. So the module name will either add it self to the front(or rear maybe) of the class names you choose as selectors.  One flag changes everything.  This makes the module system lightweight.</p>
+<pre>pojocss.module(<span class="hljs-string">'moduleName'</span>, {
+    <span class="hljs-string">'class'</span>: {
+        <span class="hljs-string">'property'</span>: <span class="hljs-string">'value'</span>;
     },
-    <span class="pl-s"><span class="pl-pds">'</span>class2<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>other-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>other-value<span class="pl-pds">'</span></span>
+    <span class="hljs-string">'class2'</span>: {
+        <span class="hljs-string">'other-property'</span>: <span class="hljs-string">'other-value'</span>
     }
-}, <span class="pl-s"><span class="pl-pds">'</span>du<span class="pl-pds">'</span></span>).<span class="pl-en">build</span>();</pre></div>
-
-<p>You'll see that you supply a string name for the module, an object containing key-value pairs of class names and declaration blocks expressed as key-value pairs, and then finally a display options object that allows you to choose how the classes are rendered: <code>h</code>, <code>dh</code>, <code>u</code>, <code>du</code>, <code>no</code>, or <code>id</code>.  These stand for hyphen, double-hyphen, underscore, double-underscore, no module name, and indirect descendant syntax.  If you write low specificity, class-based stylesheets, and want to componentize your rules easily, this is a great tool.</p>
-
+}, <span class="hljs-string">'du'</span>).build();</pre><p>You'll see that you supply a string name for the module, an object containing key-value pairs of class names and declaration blocks expressed as key-value pairs, and then finally a display options object that allows you to choose how the classes are rendered: <code>h</code>, <code>dh</code>, <code>u</code>, <code>du</code>, <code>no</code>, or <code>id</code>.  These stand for hyphen, double-hyphen, underscore, double-underscore, no module name, and indirect descendant syntax.  If you write low specificity, class-based stylesheets, and want to componentize your rules easily, this is a great tool.</p>
 <p>But surely namespacing isn't the advantage to a module system is it?  Of course not.</p>
-
-<h2>
-<a id="cross-module-inheritance" class="anchor" href="#cross-module-inheritance" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cross-module inheritance</h2>
-
+<p>##Cross-module inheritance</p>
 <p>Rulesets(or 'classes' as they are referred to here multiple times) can directly inherit from rulesets in other modules.  See the following.</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">pojocss</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>firstModule<span class="pl-pds">'</span></span>, {
-    <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span>;
+<pre>pojocss.module(<span class="hljs-string">'firstModule'</span>, {
+    <span class="hljs-string">'class'</span>: {
+        <span class="hljs-string">'property'</span>: <span class="hljs-string">'value'</span>;
     },
-    <span class="pl-s"><span class="pl-pds">'</span>class2<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>other-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>other-value<span class="pl-pds">'</span></span>
+    <span class="hljs-string">'class2'</span>: {
+        <span class="hljs-string">'other-property'</span>: <span class="hljs-string">'other-value'</span>
     }
-}, <span class="pl-s"><span class="pl-pds">'</span>du<span class="pl-pds">'</span></span>).<span class="pl-en">build</span>();
+}, <span class="hljs-string">'du'</span>).build();
 
-<span class="pl-smi">pojocss</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>secondModule<span class="pl-pds">'</span></span>, {
-    <span class="pl-s"><span class="pl-pds">'</span>class1 &lt; firstModule.class2<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>some-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>some-value<span class="pl-pds">'</span></span>
+pojocss.module(<span class="hljs-string">'secondModule'</span>, {
+    <span class="hljs-string">'class1 &lt; firstModule.class2'</span>: {
+        <span class="hljs-string">'some-property'</span>: <span class="hljs-string">'some-value'</span>
     }
-}, <span class="pl-s"><span class="pl-pds">'</span>du<span class="pl-pds">'</span></span>).<span class="pl-en">build</span>();</pre></div>
-
-<p>Now, when a graph of <code>[firstModule, secondModule]</code> is rendered, <code>secondModule.class1</code> will look like this</p>
-
-<div class="highlight highlight-source-css"><pre><span class="pl-e">.second-module__class1</span> {
-    <span class="pl-c1">some-<span class="pl-c1">property</span></span>: some-value,
+}, <span class="hljs-string">'du'</span>).build();</pre><p>Now, when a graph of <code>[firstModule, secondModule]</code> is rendered, <code>secondModule.class1</code> will look like this</p>
+<pre><span class="hljs-selector-class">.second-module__class1</span> {
+    <span class="hljs-attribute">some-property</span>: some-value,
     other-property: other-value
-}</pre></div>
-
-<p>Now, this seems like a mixin sort of.  How can it be more powerful, just a light coat of DSL.</p>
-
-<h2>
-<a id="lightweight-dsl-for-abstract-classes-and-implicit-override-protection" class="anchor" href="#lightweight-dsl-for-abstract-classes-and-implicit-override-protection" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lightweight DSL for abstract classes and implicit override protection</h2>
-
-<p>Need a class to be "abstract" or exact to fulfill dependencies, but not actually appear in the rendered stylesheets? When you create the selector key for the ruleset, just prefix it with a <code>*</code>, like so:</p>
-
-<div class="highlight highlight-source-js"><pre>{
-    <span class="pl-s"><span class="pl-pds">'</span>*abstractClass<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>some-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>some-value<span class="pl-pds">'</span></span>
+}</pre><p>Now, this seems like a mixin sort of.  How can it be more powerful, just a light coat of DSL.</p>
+<p>##Lightweight DSL for abstract classes and implicit override protection</p>
+<p>Need a class to be &quot;abstract&quot; or exact to fulfill dependencies, but not actually appear in the rendered stylesheets? When you create the selector key for the ruleset, just prefix it with a <code>*</code>, like so:</p>
+<pre>{
+    <span class="hljs-string">'*abstractClass'</span>: {
+        <span class="hljs-string">'some-property'</span>: <span class="hljs-string">'some-value'</span>
     }
-}</pre></div>
-
-<p>Anything that extends that class will be able to do so, but this ruleset will not be found in your CSS file.  Now, I said this DSL was lightweight, and it in fact has one other operator: <code>!</code>.  Place it in front a property name to make it explicit that you wish to override the value from a dependency.  Failing to do so will cause the compiler to throw an error.  This way, with low specificity and only class based styles, you can easily author styles without calculating specificity scores or accidentally overwriting properties.  Do it like this:</p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">pojocss</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>firstModule<span class="pl-pds">'</span></span>, {
-    <span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span>;
+}</pre><p>Anything that extends that class will be able to do so, but this ruleset will not be found in your CSS file.  Now, I said this DSL was lightweight, and it in fact has one other operator: <code>!</code>.  Place it in front a property name to make it explicit that you wish to override the value from a dependency.  Failing to do so will cause the compiler to throw an error.  This way, with low specificity and only class based styles, you can easily author styles without calculating specificity scores or accidentally overwriting properties.  Do it like this:</p>
+<pre>pojocss.module(<span class="hljs-string">'firstModule'</span>, {
+    <span class="hljs-string">'class'</span>: {
+        <span class="hljs-string">'property'</span>: <span class="hljs-string">'value'</span>;
     },
-    <span class="pl-s"><span class="pl-pds">'</span>class2<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>other-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>other-value<span class="pl-pds">'</span></span>
+    <span class="hljs-string">'class2'</span>: {
+        <span class="hljs-string">'other-property'</span>: <span class="hljs-string">'other-value'</span>
     }
-}, <span class="pl-s"><span class="pl-pds">'</span>du<span class="pl-pds">'</span></span>).<span class="pl-en">build</span>();
+}, <span class="hljs-string">'du'</span>).build();
 
-<span class="pl-smi">pojocss</span>.<span class="pl-en">module</span>(<span class="pl-s"><span class="pl-pds">'</span>secondModule<span class="pl-pds">'</span></span>, {
-    <span class="pl-s"><span class="pl-pds">'</span>class1 &lt; firstModule.class2<span class="pl-pds">'</span></span><span class="pl-k">:</span> {
-        <span class="pl-s"><span class="pl-pds">'</span>!other-property<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>some-other-value<span class="pl-pds">'</span></span>
+pojocss.module(<span class="hljs-string">'secondModule'</span>, {
+    <span class="hljs-string">'class1 &lt; firstModule.class2'</span>: {
+        <span class="hljs-string">'!other-property'</span>: <span class="hljs-string">'some-other-value'</span>
     }
-}, <span class="pl-s"><span class="pl-pds">'</span>du<span class="pl-pds">'</span></span>).<span class="pl-en">build</span>();</pre></div>
-
-<p>And you'll end up with this:</p>
-
-<div class="highlight highlight-source-css"><pre><span class="pl-e">.second-module__class1</span> {
-    <span class="pl-c1">other-<span class="pl-c1">property</span></span>: some-other-value
-}</pre></div>
-
-<h2>
-<a id="its-just-javascript" class="anchor" href="#its-just-javascript" aria-hidden="true"><span class="octicon octicon-link"></span></a>It's just Javascript</h2>
-
-<p>Probably the best part about <em>POJOCSS</em> is that it is <em>just Javascript</em>, not some CSS variant trying to hack on calculation and variables and such.  This is what Javascript does for a living.  Create variables, generators, factory functions, value calculators, whatever you'd like.  Or use it like it's just a preprocessor.  Or use it like PostCSS, scanning properties and values for things to transform, combine, or divide.  Auto-prefix with ease.</p>
-
-<p>Right now, there aren't any "hooks" into the compilation system.  But there might not need to be.  There are two great places for you to put your hacking skills to work.</p>
-
-<h3>
-<a id="defining-the-classes" class="anchor" href="#defining-the-classes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Defining the classes</h3>
-
-<h6>
-<a id="coming-soon" class="anchor" href="#coming-soon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming Soon...</h6>
-
-<h3>
-<a id="working-with-built-modules" class="anchor" href="#working-with-built-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Working with built modules</h3>
-
-<h6>
-<a id="coming-soon-1" class="anchor" href="#coming-soon-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming Soon...</h6>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/gamebox/pojocss">Pojocss</a> is maintained by <a href="https://github.com/gamebox">gamebox</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
-
-    </section>
-
-  
-  </body>
-</html>
+}, <span class="hljs-string">'du'</span>).build();</pre><p> And you'll end up with this:</p>
+<pre><span class="hljs-selector-class">.second-module__class1</span> {
+    <span class="hljs-attribute">other-property</span>: some-other-value
+}</pre><p>##It's just Javascript</p>
+<p>Probably the best part about <strong>POJOCSS</strong> is that it is <em>just Javascript</em>, not some CSS variant trying to hack on calculation and variables and such.  This is what Javascript does for a living.  Create variables, generators, factory functions, value calculators, whatever you'd like.  Or use it like it's just a preprocessor.  Or use it like PostCSS, scanning properties and values for things to transform, combine, or divide.  Auto-prefix with ease.</p>
+<p>Right now, there aren't any &quot;hooks&quot; into the compilation system.  But there might not need to be.  There are two great places for you to put your hacking skills to work.</p>
+<p>###Defining the classes</p>
+<p>######Coming Soon...</p>
+<p>###Working with built modules</p>
+<p>######Coming Soon...</p>
+</div></article></div><footer><div style="box-sizing:border-box;max-width:1024px;margin-left:auto;margin-right:auto;margin-bottom:32px;padding-top:8px;padding-bottom:8px;padding-left:32px;padding-right:32px;"><div style="margin-left:-16px;margin-right:-16px;"><a href="https://github.com/gamebox/pojocss" class="Link" style="box-sizing:border-box;color:inherit;text-transform:uppercase;font-weight:600;letter-spacing:0.2em;opacity:0.75;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;text-decoration:none;">GitHub</a><a href="https://github.com/gamebox" class="Link" style="box-sizing:border-box;color:inherit;text-transform:uppercase;font-weight:600;letter-spacing:0.2em;opacity:0.75;display:inline-block;font-size:14px;line-height:16px;padding-left:16px;padding-right:16px;padding-top:16px;padding-bottom:16px;text-decoration:none;">gamebox</a></div><div></div></div></footer></div><div style="font-family:-apple-system, sans-serif;font-size:12px;font-weight:600;text-align:right;padding:24px;color:#333;background-color:#eee;"><a href="//compositor.io" style="color:inherit;text-decoration:none;">Built with Compositor.io</a></div></body></html>
