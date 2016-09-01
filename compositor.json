@@ -1,0 +1,96 @@
+{
+  "name": "gamebox/pojocss",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.19"
+  },
+  "title": "PojoCSS",
+  "branch": "",
+  "style": {
+    "name": "Future",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "\"Avenir Next\", Helvetica, sans-serif",
+    "heading": {
+      "fontWeight": 500,
+      "textTransform": "uppercase",
+      "letterSpacing": "0.2em"
+    },
+    "alternativeText": {
+      "textTransform": "uppercase",
+      "fontWeight": 400,
+      "letterSpacing": "0.2em",
+      "opacity": 0.75
+    },
+    "colors": {
+      "text": "#333",
+      "background": "#fff",
+      "primary": "#666",
+      "secondary": "#888",
+      "highlight": "#1f80ff",
+      "muted": "#f6f6f6",
+      "border": "#eee"
+    },
+    "layout": {
+      "centered": true,
+      "maxWidth": 1024,
+      "bannerHeight": "80vh"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://gamebox.github.io/pojocss",
+          "text": "Home"
+        },
+        {
+          "href": "https://github.com/gamebox/pojocss",
+          "text": "GitHub"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "pojocss",
+      "subhead": "Exploring the power Plain ol' Javascript Objects could bring to building stylesheets.",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "pojocss: Exploring the power Plain ol' Javascript Objects could bring to building stylesheets.",
+          "url": "https://gamebox.github.io/pojocss"
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "gamebox",
+          "repo": "pojocss"
+        }
+      ]
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "<p>#POJOCSS.js</p>\n<p>Don&apos;t be confused.  This is a Javascript library for building CSS files.  Yes, I know:  &quot;What?&quot;</p>\n<p>This is about exploring what expressing CSS rulesets as Plain ol&apos; Javascript Objects could bring to the experience of building stylesheets for your webapps.</p>\n<p>Let&apos;s see what I&apos;ve found so far</p>\n<p>##Module System</p>\n<p>We are smart authors of CSS, we like to namespace our classes and not fight the specificity battle.  So, we develop our styles in modules.  One powerful thing that I&apos;ve found here?  We can compose a lot of different ways to compose our rule selectors.  For instance:</p>\n<pre>``` css\n<span class=\"hljs-selector-class\">.module-class</span>  { ... }\n<span class=\"hljs-selector-class\">.module--class</span> { ... }\n<span class=\"hljs-selector-class\">.module_class</span>  { ... }\n<span class=\"hljs-selector-class\">.module__class</span> { ... }\n<span class=\"hljs-selector-class\">.module</span> <span class=\"hljs-selector-class\">.class</span> { ... }\n```</pre><p>No need for the system to get all opinionated, though it does start with one big opinion that may be a deal breaker for some.  <em>All</em> selectors are classes. So the module name will either add it self to the front(or rear maybe) of the class names you choose as selectors.  One flag changes everything.  This makes the module system lightweight.</p>\n<pre>pojocss.module(<span class=\"hljs-string\">&apos;moduleName&apos;</span>, {\n    <span class=\"hljs-string\">&apos;class&apos;</span>: {\n        <span class=\"hljs-string\">&apos;property&apos;</span>: <span class=\"hljs-string\">&apos;value&apos;</span>;\n    },\n    <span class=\"hljs-string\">&apos;class2&apos;</span>: {\n        <span class=\"hljs-string\">&apos;other-property&apos;</span>: <span class=\"hljs-string\">&apos;other-value&apos;</span>\n    }\n}, <span class=\"hljs-string\">&apos;du&apos;</span>).build();</pre><p>You&apos;ll see that you supply a string name for the module, an object containing key-value pairs of class names and declaration blocks expressed as key-value pairs, and then finally a display options object that allows you to choose how the classes are rendered: <code>h</code>, <code>dh</code>, <code>u</code>, <code>du</code>, <code>no</code>, or <code>id</code>.  These stand for hyphen, double-hyphen, underscore, double-underscore, no module name, and indirect descendant syntax.  If you write low specificity, class-based stylesheets, and want to componentize your rules easily, this is a great tool.</p>\n<p>But surely namespacing isn&apos;t the advantage to a module system is it?  Of course not.</p>\n<p>##Cross-module inheritance</p>\n<p>Rulesets(or &apos;classes&apos; as they are referred to here multiple times) can directly inherit from rulesets in other modules.  See the following.</p>\n<pre>pojocss.module(<span class=\"hljs-string\">&apos;firstModule&apos;</span>, {\n    <span class=\"hljs-string\">&apos;class&apos;</span>: {\n        <span class=\"hljs-string\">&apos;property&apos;</span>: <span class=\"hljs-string\">&apos;value&apos;</span>;\n    },\n    <span class=\"hljs-string\">&apos;class2&apos;</span>: {\n        <span class=\"hljs-string\">&apos;other-property&apos;</span>: <span class=\"hljs-string\">&apos;other-value&apos;</span>\n    }\n}, <span class=\"hljs-string\">&apos;du&apos;</span>).build();\n\npojocss.module(<span class=\"hljs-string\">&apos;secondModule&apos;</span>, {\n    <span class=\"hljs-string\">&apos;class1 &lt; firstModule.class2&apos;</span>: {\n        <span class=\"hljs-string\">&apos;some-property&apos;</span>: <span class=\"hljs-string\">&apos;some-value&apos;</span>\n    }\n}, <span class=\"hljs-string\">&apos;du&apos;</span>).build();</pre><p>Now, when a graph of <code>[firstModule, secondModule]</code> is rendered, <code>secondModule.class1</code> will look like this</p>\n<pre><span class=\"hljs-selector-class\">.second-module__class1</span> {\n    <span class=\"hljs-attribute\">some-property</span>: some-value,\n    other-property: other-value\n}</pre><p>Now, this seems like a mixin sort of.  How can it be more powerful, just a light coat of DSL.</p>\n<p>##Lightweight DSL for abstract classes and implicit override protection</p>\n<p>Need a class to be &quot;abstract&quot; or exact to fulfill dependencies, but not actually appear in the rendered stylesheets? When you create the selector key for the ruleset, just prefix it with a <code>*</code>, like so:</p>\n<pre>{\n    <span class=\"hljs-string\">&apos;*abstractClass&apos;</span>: {\n        <span class=\"hljs-string\">&apos;some-property&apos;</span>: <span class=\"hljs-string\">&apos;some-value&apos;</span>\n    }\n}</pre><p>Anything that extends that class will be able to do so, but this ruleset will not be found in your CSS file.  Now, I said this DSL was lightweight, and it in fact has one other operator: <code>!</code>.  Place it in front a property name to make it explicit that you wish to override the value from a dependency.  Failing to do so will cause the compiler to throw an error.  This way, with low specificity and only class based styles, you can easily author styles without calculating specificity scores or accidentally overwriting properties.  Do it like this:</p>\n<pre>pojocss.module(<span class=\"hljs-string\">&apos;firstModule&apos;</span>, {\n    <span class=\"hljs-string\">&apos;class&apos;</span>: {\n        <span class=\"hljs-string\">&apos;property&apos;</span>: <span class=\"hljs-string\">&apos;value&apos;</span>;\n    },\n    <span class=\"hljs-string\">&apos;class2&apos;</span>: {\n        <span class=\"hljs-string\">&apos;other-property&apos;</span>: <span class=\"hljs-string\">&apos;other-value&apos;</span>\n    }\n}, <span class=\"hljs-string\">&apos;du&apos;</span>).build();\n\npojocss.module(<span class=\"hljs-string\">&apos;secondModule&apos;</span>, {\n    <span class=\"hljs-string\">&apos;class1 &lt; firstModule.class2&apos;</span>: {\n        <span class=\"hljs-string\">&apos;!other-property&apos;</span>: <span class=\"hljs-string\">&apos;some-other-value&apos;</span>\n    }\n}, <span class=\"hljs-string\">&apos;du&apos;</span>).build();</pre><p> And you&apos;ll end up with this:</p>\n<pre><span class=\"hljs-selector-class\">.second-module__class1</span> {\n    <span class=\"hljs-attribute\">other-property</span>: some-other-value\n}</pre><p>##It&apos;s just Javascript</p>\n<p>Probably the best part about <strong>POJOCSS</strong> is that it is <em>just Javascript</em>, not some CSS variant trying to hack on calculation and variables and such.  This is what Javascript does for a living.  Create variables, generators, factory functions, value calculators, whatever you&apos;d like.  Or use it like it&apos;s just a preprocessor.  Or use it like PostCSS, scanning properties and values for things to transform, combine, or divide.  Auto-prefix with ease.</p>\n<p>Right now, there aren&apos;t any &quot;hooks&quot; into the compilation system.  But there might not need to be.  There are two great places for you to put your hacking skills to work.</p>\n<p>###Defining the classes</p>\n<p>######Coming Soon...</p>\n<p>###Working with built modules</p>\n<p>######Coming Soon...</p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/gamebox/pojocss",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/gamebox",
+          "text": "gamebox"
+        }
+      ]
+    }
+  ]
+}
